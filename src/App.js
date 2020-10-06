@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import ListIteam from "./ListIteam";
+import Header from "./Header";
 
 const initialIteamList = [
     [
@@ -40,10 +41,32 @@ function App() {
         setList(newList)
     }
 
+    const setCountSize = (size) => {
+       const newList = [...list];
+
+       for(let i = 0; i < size; i ++){
+           const newElement = [
+               {id: Math.random(), user: "Undefind" + i, gender: "Undefind"}
+           ]
+           newList.push(newElement);
+       }
+        setList(newList);
+    }
+
 
   return (
 
     <div>
+
+        <div>
+
+        <Header
+            setCountSize={setCountSize}
+        />
+
+        <hr/>
+
+        </div>
 
         {list.map((el, index) => <ListIteam
             list={list}
@@ -51,6 +74,7 @@ function App() {
             key={Math.random()}
             el={el}
             moveElementToAnotherListDown={moveElementToAnotherListDown}
+
         /> )}
 
 
